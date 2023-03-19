@@ -1,21 +1,48 @@
-<header class="d-flex align-items-center p-3" style="background-color: #3778c2">
-  <i class="fa fa-bars"></i>
+<header class="d-flex align-items-center p-3 bg-primary text-white fs-4">
+  <i id="open-drawer-icon" class="fa fa-bars"></i>
   <span class="w-100 text-center">Categories</span>
   <i class="fa fa-search"></i>
 </header>
 
-<div class="list-group m-2 pb-5">
-  <% @categories.each do |category| %>
-    <%= link_to category_operations_path(category), class: "list-group-item card p-0 mb-2" do %>
-      <h2 class="card-header"><%= category.name %></h2>
-      <div class="card-body d-flex justify-content-between align-items-center pt-3">
-        <%= image_tag "uploads/#{category.icon_url}", class: "img-thumbnail w-25 p-0", style: "aspect-ratio: 1" %>
-        <span style="font-size: xx-large">$<%= category.total_amount %></span>
-      </div>
+<% if @categories.empty? %>
+  <div class="position-absolute top-50">
+    <h1 class="text-center">Click on the button below to create a new category</h1>
+  </div>
+<% else %>
+  <div class="list-group m-2 pb-5">
+    <% @categories.each do |category| %>
+      <%= link_to category_operations_path(category), class: "list-group-item card p-0 mb-2" do %>
+        <h2 class="card-header"><%= category.name %></h2>
+        <div class="card-body d-flex justify-content-between align-items-center pt-3">
+          <%= image_tag "uploads/#{category.icon_url}", class: "img-thumbnail w-25 p-0", style: "aspect-ratio: 1" %>
+          <span style="font-size: xx-large">$<%= category.total_amount %></span>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <div class="fixed-bottom bg-success py-3 text-center">
   <%= link_to "Add a new category", new_category_path, class: "border px-5 py-2 text-decoration-none", style: "color: #fff" %>
+</div>
+
+<div id="drawer-menu" class="position-absolute fixed-bottom fixed-top" style="z-index: 1060; display: none">
+  <div class="h-100 w-50 bg-primary">
+    <div class="card bg-primary">
+      <div class="card-header p-3 fs-4 text-white">
+        <i id="close-drawer-icon" class="fa fa-arrow-left"></i>
+      </div>
+    </div>
+    <div class="card-body list-group">
+      <div class="list-group-item bg-primary border-0 text-white">
+        <i class="fa fa-user"></i>
+        <span class="ms-2"><%= current_user.name.truncate(10, separator: ' ') %></span>
+      </div>
+      <div class="list-group-item bg-primary border-0 text-white">
+        <i class="fa fa-sign-out-alt"></i>
+        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+  <div id="drawer-menu-outer" class="h-100 w-50 bg-dark" style="--bs-bg-opacity: .5"></div>
 </div>

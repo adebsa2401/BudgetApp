@@ -1,5 +1,7 @@
-<header class="d-flex align-items-center p-3" style="background-color: #3778c2">
-  <i class="fa fa-bars"></i>
+<header class="d-flex align-items-center p-3 fs-4 text-white bg-primary">
+  <%= link_to categories_path do %>
+    <i class="fa fa-arrow-left text-white"></i>
+  <% end %>
   <span class="w-100 text-center">Transactions</span>
   <i class="fa fa-search"></i>
 </header>
@@ -23,5 +25,5 @@
 </div>
 
 <div class="fixed-bottom bg-success py-3 text-center">
-  <%= link_to "Add a new transaction", new_operation_path, class: "border px-5 py-2 text-decoration-none", style: "color: #fff" %>
+  <%= link_to "Add a new transaction", new_operation_path(category_id: @category.id), class: "border px-5 py-2 text-decoration-none", style: "color: #fff" %>
 </div>

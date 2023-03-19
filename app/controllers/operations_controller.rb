@@ -6,6 +6,7 @@ class OperationsController < ApplicationController
 
   def new
     @operation = Operation.new
+    @category = Category.find(params[:category_id])
   end
 
   def create

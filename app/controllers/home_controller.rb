@@ -1,10 +1,5 @@
 class HomeController < ApplicationController
   def index
-    if current_user
-      redirect_to categories_path
-    end
+    redirect_to categories_path if user_signed_in?
   end
 end
-
-# @Todo: Add drawer menu with logout option
-# @Todo: Implement navigation
