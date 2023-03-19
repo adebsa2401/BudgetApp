@@ -4,5 +4,4 @@ class Operation < ApplicationRecord
 
   validates :amount, presence: true, numericality: { greater_than: 0 }
   validates :name, presence: true, length: { minimum: 3 }
-  validates :categories, presence: true, length: { minimum: 1 }
 end

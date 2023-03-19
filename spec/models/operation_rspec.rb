@@ -30,4 +30,8 @@ RSpec.describe Operation, type: :model do
     operation.name = 'Fo'
     expect(operation).to_not be_valid
   end
+
+  it 'belongs to a category' do
+    expect(operation.categories.length).to be > 0
+  end
 end
