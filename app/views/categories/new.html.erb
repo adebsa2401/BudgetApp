@@ -1,2 +1,21 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<header class="d-flex align-items-center p-3" style="background-color: #3778c2">
+  <i class="fa fa-arrow-left"></i>
+  <span class="w-100 text-center">Add Category</span>
+</header>
+
+<%= form_for(@category, html: {class: "mt-3 h-100"}) do |f| %>
+  <div class="card">
+    <div class="form-floating ms-3">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control border-start-0 border-top-0 border-end-0 border-bottom-0 shadow-none", placeholder: "John Doe" %>
+      <%= f.label :name %>
+    </div>
+
+    <div class="form-floating ms-3">
+      <%= f.file_field :icon, class: "form-control border-start-0 border-end-0 shadow-none" %>
+    </div>
+  </div>
+
+  <div class="fixed-bottom bg-success py-2 text-center">
+    <%= f.submit "Save", class: "btn btn-success border px-5", style: "color: #fff" %>
+  </div>
+<% end %>
