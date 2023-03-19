@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
     devise_controller? && resource_name == :user && action_name == 'create'
   end
 
-  protected
-
   def configure_signup_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end

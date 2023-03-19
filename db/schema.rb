@@ -21,6 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_001756) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories_operations", id: false, force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "operation_id", null: false
+    t.index ["category_id"], name: "index_categories_operations_on_category_id"
+    t.index ["operation_id"], name: "index_categories_operations_on_operation_id"
+  end
+
   create_table "operations", force: :cascade do |t|
     t.string "name"
     t.float "amount"
@@ -43,5 +50,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_19_001756) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories_operations", "categories"
+  add_foreign_key "categories_operations", "operations"
   add_foreign_key "operations", "users", column: "author_id"
 end
