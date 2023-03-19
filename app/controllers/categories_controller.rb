@@ -13,8 +13,15 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+
+    icon = params[:category][:icon]
+    if icon
+      File.binwrite(Rails.root.join('app/assets/images', 'uploads', icon.original_filename), icon.read)
+      @category.icon_url = icon.original_filename
+    end
+
     if @category.save
-      redirect_to @category
+      redirect_to categories_path
     else
       render :new
     end
@@ -23,6 +30,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :icon_url)
+    params.require(:category).permit(:name)
   end
 end

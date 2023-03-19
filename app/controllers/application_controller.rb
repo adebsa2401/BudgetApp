@@ -1,5 +1,11 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_signup_params, only: [:create]
+  before_action :configure_signup_params, only: [:create], if: :devise_controller?
+
+  protected
+
+  def registration_controller?
+    devise_controller? && resource_name == :user && action_name == 'create'
+  end
 
   protected
 
