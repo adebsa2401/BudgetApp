@@ -6,7 +6,7 @@
 
 <% if @categories.empty? %>
   <div class="position-absolute top-50">
-    <h1 class="text-center">Click on the button below to create a new category</h1>
+    <h2 class="text-center">Click on the button below to create a new category</h2>
   </div>
 <% else %>
   <div class="list-group m-2 pb-5">
@@ -26,23 +26,4 @@
   <%= link_to "Add a new category", new_category_path, class: "border px-5 py-2 text-decoration-none", style: "color: #fff" %>
 </div>
 
-<div id="drawer-menu" class="position-absolute fixed-bottom fixed-top" style="z-index: 1060; display: none">
-  <div class="h-100 w-50 bg-primary">
-    <div class="card bg-primary">
-      <div class="card-header p-3 fs-4 text-white">
-        <i id="close-drawer-icon" class="fa fa-arrow-left"></i>
-      </div>
-    </div>
-    <div class="card-body list-group">
-      <div class="d-flex align-items-center list-group-item bg-primary border-0 text-white">
-        <i class="fa fa-user"></i>
-        <span class="d-block ms-2" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis"><%= current_user.name %></span>
-      </div>
-      <div class="d-flex align-items-center list-group-item bg-primary border-0 text-white">
-        <i class="fa fa-sign-out-alt"></i>
-        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white text-decoration-none" %>
-      </div>
-    </div>
-  </div>
-  <div id="drawer-menu-outer" class="h-100 w-50 bg-dark" style="--bs-bg-opacity: .5"></div>
-</div>
+<%= render 'partials/menu' %>

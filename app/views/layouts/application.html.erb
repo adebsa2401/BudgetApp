@@ -34,16 +34,5 @@
         placeholder: $( this ).data( 'placeholder' ),
     });
 </script>
-<script>
-  document.querySelectorAll('#close-drawer-icon, #drawer-menu-outer').forEach(function (element) {
-    element.addEventListener('click', function () {
-      document.getElementById('drawer-menu').classList.remove('visible');
-    });
-  });
-
-  document.getElementById('open-drawer-icon').addEventListener('click', function () {
-      document.getElementById('drawer-menu').classList.add('visible');
-  });
-</script>
 </body>
 </html>
