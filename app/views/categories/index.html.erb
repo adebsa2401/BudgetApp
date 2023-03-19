@@ -34,11 +34,11 @@
       </div>
     </div>
     <div class="card-body list-group">
-      <div class="list-group-item bg-primary border-0 text-white">
+      <div class="d-flex align-items-center list-group-item bg-primary border-0 text-white">
         <i class="fa fa-user"></i>
-        <span class="ms-2"><%= current_user.name.truncate(10, separator: ' ') %></span>
+        <span class="d-block ms-2" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis"><%= current_user.name %></span>
       </div>
-      <div class="list-group-item bg-primary border-0 text-white">
+      <div class="d-flex align-items-center list-group-item bg-primary border-0 text-white">
         <i class="fa fa-sign-out-alt"></i>
         <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white text-decoration-none" %>
       </div>
