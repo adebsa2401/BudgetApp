@@ -1,0 +1,28 @@
+<header class="d-flex align-items-center p-3 fs-4 text-white bg-primary">
+  <%= link_to category_operations_path(@category) do %>
+    <i class="fa fa-arrow-left text-white"></i>
+  <% end %>
+  <span class="w-100 text-center">Add Transaction</span>
+</header>
+
+<%= form_for(@operation, html: { class: "mt-3 h-100" }) do |f| %>
+  <div class="card">
+    <div class="form-floating ms-3">
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control border-start-0 border-top-0 border-end-0 border-bottom-0 shadow-none", placeholder: "John Doe" %>
+      <%= f.label :name %>
+    </div>
+
+    <div class="form-floating ms-3">
+      <%= f.number_field :amount, autocomplete: "amount", class: "form-control border-start-0 border-end-0 border-bottom-0 shadow-none", placeholder: "$0.0" %>
+      <%= f.label :amount %>
+    </div>
+
+    <div class="form-floating ms-3">
+      <%= f.select :category_ids, Category.all.collect { |c| [c.name, c.id] }, { include_blank: true, include_hidden: false }, multiple: true, "data-placeholder": "Select categories", class: 'multiple-select-field border-start-0 border-end-0 border-bottom-0 shadow-none w-100' %>
+    </div>
+  </div>
+
+  <div class="fixed-bottom bg-success py-2 text-center">
+    <%= f.submit "Save", class: "btn btn-success border px-5", style: "color: #fff" %>
+  </div>
+<% end %>

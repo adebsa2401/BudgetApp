@@ -1,0 +1,32 @@
+<div id="drawer-menu" class="position-absolute fixed-bottom fixed-top" style="z-index: 1060; display: none">
+  <div class="h-100 w-50 bg-primary">
+    <div class="card bg-primary">
+      <div class="card-header p-3 fs-4 text-white">
+        <i id="close-drawer-icon" class="fa fa-arrow-left"></i>
+        <span>Blog App</span>
+      </div>
+    </div>
+    <div class="card-body list-group">
+      <div class="d-flex align-items-center list-group-item bg-primary border-0 text-white">
+        <i class="fa fa-user me-2"></i>
+        <span style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis"><%= current_user.name %></span>
+      </div>
+      <div class="d-flex align-items-center list-group-item bg-primary border-0 text-white">
+        <i class="fa fa-sign-out-alt me-2"></i>
+        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white text-decoration-none" %>
+      </div>
+    </div>
+  </div>
+  <div id="drawer-menu-outer" class="h-100 w-50 bg-dark" style="--bs-bg-opacity: .5"></div>
+</div>
+<script>
+    document.querySelectorAll('#close-drawer-icon, #drawer-menu-outer').forEach(function (element) {
+        element.addEventListener('click', function () {
+            document.getElementById('drawer-menu').classList.remove('visible');
+        });
+    });
+
+    document.getElementById('open-drawer-icon').addEventListener('click', function () {
+        document.getElementById('drawer-menu').classList.add('visible');
+    });
+</script>
