@@ -38,6 +38,7 @@ RSpec.describe Category, type: :model do
 
   it 'should fail if total_amount is not equal to the sum of operations' do
     login_as @user
+    @category.current_user = @user
     expect(@category.total_amount).to eq(@operation1.amount + @operation2.amount)
   end
 end

@@ -238,6 +238,7 @@ If you like this project please leave a ⭐️!
 I would like to thank
 
 - [Microverse](https://www.microverse.org/)
+- [Gregoire Vella on Behance](https://www.behance.net/gregoirevella) for providing the design inspiration.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
