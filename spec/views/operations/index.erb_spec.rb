@@ -6,7 +6,9 @@ RSpec.describe 'Operations index page', type: :system do
       u.name = 'John Doe'
       u.password = Devise.friendly_token
     end
-    @category = Category.find_or_create_by(name: 'Food', icon_url: 'https://www.shutterstock.com/image-photo/group-white-paper-ship-one-260nw-1121086322.jpg')
+    @category = Category.find_or_create_by(name: 'Food') do |c|
+      c.image.attach(io: File.open(Rails.root.join('spec', 'images', 'food.jpeg')), filename: 'food.jpeg')
+    end
     @operation1 = Operation.find_or_create_by(name: 'Pay tomato') do |o|
       o.amount = 100
       o.author = @user

@@ -6,7 +6,9 @@ RSpec.describe Category, type: :model do
       u.name = 'John Doe'
       u.password = Devise.friendly_token
     end
-    @category = Category.find_or_create_by(name: 'Food', icon_url: 'https://www.shutterstock.com/image-photo/group-white-paper-ship-one-260nw-1121086322.jpg')
+    @category = Category.find_or_create_by(name: 'Food') do |c|
+      c.image.attach(io: File.open(Rails.root.join('spec', 'images', 'food.jpeg')), filename: 'food.jpeg')
+    end
     @operation1 = Operation.find_or_create_by(name: 'Pay tomato') do |o|
       o.amount = 100
       o.author = @user
@@ -25,9 +27,8 @@ RSpec.describe Category, type: :model do
     expect(@category).to_not be_valid
   end
 
-  it 'should fail if icon_url is not present' do
-    @category.icon_url = nil
-    expect(@category).to_not be_valid
+  it 'should have image attached' do
+    expect(@category.image).to be_attached
   end
 
   it 'should fail if name is too short' do

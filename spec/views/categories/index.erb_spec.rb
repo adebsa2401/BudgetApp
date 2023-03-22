@@ -7,10 +7,12 @@ RSpec.describe 'Categories index page', type: :system do
       u.password = Devise.friendly_token
     end
 
-    category1 = Category.find_or_create_by(name: 'Food',
-                                           icon_url: 'custom_resized_16e6c3b4-a5cc-423e-88a3-4bbf7ee33344.jpeg')
-    category2 = Category.find_or_create_by(name: 'Clothes',
-                                           icon_url: 'custom_resized_16e6c3b4-a5cc-423e-88a3-4bbf7ee33344.jpeg')
+    category1 = Category.find_or_create_by(name: 'Food') do |c|
+      c.image.attach(io: File.open(Rails.root.join('spec', 'images', 'food.jpeg')), filename: 'food.jpeg')
+    end
+    category2 = Category.find_or_create_by(name: 'Clothes') do |c|
+      c.image.attach(io: File.open(Rails.root.join('spec', 'images', 'clothes.jpeg')), filename: 'clothes.jpeg')
+    end
 
     category1.operations.find_or_create_by(name: 'Pay tomato', amount: 100, author: user)
     category1.operations.find_or_create_by(name: 'Pay pepper', amount: 200, author: user)
