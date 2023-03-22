@@ -1,7 +1,8 @@
 class OperationsController < ApplicationController
   def index
-    @category = Category.find(params[:category_id])
-    @operations = @category.operations.where(author: current_user).order(created_at: :desc)
+    @category = Category.includes(:operations).find(params[:category_id])
+    @category.current_user = current_user
+    @operations = @category.current_user_operations.order(created_at: :desc)
   end
 
   def new

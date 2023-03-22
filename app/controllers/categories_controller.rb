@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   def index
     @categories = Category.all
+    @categories.each { |category| category.current_user = current_user }
   end
 
   def new
